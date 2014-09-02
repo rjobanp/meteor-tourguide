@@ -1,0 +1,101 @@
+.tourguide {
+  display: none;
+  width: 320px;
+  max-width: 320px;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 5048;
+  padding: 1px;
+  text-align: left;
+  white-space: normal;
+  background-color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-transition: all .15s ease-in;
+  -o-transition: all .15s ease-in;
+  -moz-transition: all .15s ease-in;
+  -ms-transition: all .15s ease-in;
+  transition: all .15s ease-in;
+}
+.tourguide.left {
+  margin-left: -10px;
+}
+.tourguide.right {
+  margin-left: 10px;
+}
+.tourguide.right .arrow {
+  top: 50%;
+  left: -11px;
+  margin-top: -11px;
+  border-right-color: rgba(0, 0, 0, 0.4);
+  border-left-width: 0;
+}
+.tourguide.left .arrow {
+  top: 50%;
+  right: -11px;
+  margin-top: -11px;
+  border-left-color: rgba(0, 0, 0, 0.2);
+  border-right-width: 0;
+}
+.tourguide .arrow {
+  border-width: 11px;
+}
+.tourguide .arrow, .tourguide .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.tourguide.right .arrow:after {
+  bottom: -10px;
+  left: 1px;
+  border-right-color: #ffffff;
+  border-left-width: 0;
+}
+.tourguide.left .arrow:after {
+  right: 1px;
+  bottom: -10px;
+  border-left-color: #ffffff;
+  border-right-width: 0;
+}
+.tourguide .arrow:after {
+  border-width: 10px;
+  content: "";
+}
+.tourguide .arrow, .tourguide .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+}
+.tourguide .tourguide-content {
+  overflow: hidden;
+  padding: 9px 14px;
+  color: #34495e;
+}
+.tourguide-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 5040;
+  background-color: #000;
+  opacity: 0.3;
+}
+
+.tourguide-above-overlay {
+  z-index: 5041 !important;
+}
