@@ -1,5 +1,5 @@
 Package.describe({
-  summary: "Tour guide class. Steps are triggered based on user actions rather than prev/next buttons. Uses bootstrap style tour popovers that can contain meteor templates.",
+  summary: "Tour guide class built around meteor templates and reactivity.",
   version: "0.0.1",
   git: "https://github.com/rosh93/meteor-tourguide"
 });
