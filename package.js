@@ -1,11 +1,12 @@
 Package.describe({
   summary: "Tour guide class built around meteor templates and reactivity.",
-  version: "0.0.1",
+  version: "0.0.2",
   git: "https://github.com/rosh93/meteor-tourguide"
 });
 
 Package.onUse(function(api) {
-  api.versionsFrom('METEOR@0.9.0.1');
+  api.use('reactive-var');
+  api.versionsFrom('METEOR@0.9.2.2');
   api.addFiles(['tours.js', 'tours.css'], ['client']);
   api.export('TourGuide', ['client']);
 });

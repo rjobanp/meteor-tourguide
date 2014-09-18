@@ -27,7 +27,7 @@ TourGuide = function(options) {
   this.ended = false;
   this.started = false;
 
-  this.step = new Blaze.ReactiveVar(0);
+  this.step = new ReactiveVar(0);
 
   if ( !options.noDefaultStart ) {
     this.start();
@@ -70,7 +70,7 @@ TourGuide.prototype.end = function() {
   this.updateAutorun.stop();
   this.ended = true;
   if ( this.onEnd )
-    Deps.afterFlush(this.onEnd);
+    Tracker.afterFlush(this.onEnd);
 }
 
 TourGuide.prototype.removeStep = function() {
@@ -78,7 +78,7 @@ TourGuide.prototype.removeStep = function() {
   $('.tourguide-above-overlay').removeClass('tourguide-above-overlay');
   this.tourNode.hide();
   if ( this.stepRange )
-    UI.remove(this.stepRange);
+    Blaze.remove(this.stepRange);
 }
 
 TourGuide.prototype.showStep = function(stepIndex) {
@@ -86,8 +86,7 @@ TourGuide.prototype.showStep = function(stepIndex) {
   this.paused = false;
 
   // Render and insert the meteor template for this step into the DOM
-  this.stepRange = UI.renderWithData(step.template || this.defaultTemplate, step.data);
-  UI.insert(this.stepRange, this.tourNode.find('.tourguide-content').get(0));
+  this.stepRange = Blaze.renderWithData(step.template || this.defaultTemplate, step.data, this.tourNode.find('.tourguide-content').get(0));
 
   this.positionPopover(step);
 
@@ -97,7 +96,7 @@ TourGuide.prototype.showStep = function(stepIndex) {
 
 TourGuide.prototype.addOverlay = function(step) {
   this.tourOverlay.show();
-  Deps.afterFlush(function() {
+  Tracker.afterFlush(function() {
     $(step.element).addClass('tourguide-above-overlay');
     $(step.aboveOverlay).addClass('tourguide-above-overlay');
   }.bind(this));
@@ -105,7 +104,7 @@ TourGuide.prototype.addOverlay = function(step) {
 
 TourGuide.prototype.positionPopover = function(step) {
   // Position the popover near the element
-  Deps.afterFlush(function() {
+  Tracker.afterFlush(function() {
     var element = $(step.element);
     var tourNode = this.tourNode;
     var arrow = this.tourNode.find('.arrow');

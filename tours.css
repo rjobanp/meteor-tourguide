@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 5048;
+  z-index: 6048;
   padding: 1px;
   text-align: left;
   white-space: normal;
@@ -91,11 +91,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 5040;
+  z-index: 6040;
   background-color: #000;
   opacity: 0.3;
 }
 
 .tourguide-above-overlay {
-  z-index: 5041 !important;
+  z-index: 6041 !important;
 }
