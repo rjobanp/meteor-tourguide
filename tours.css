@@ -9,7 +9,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 6048;
+  z-index: 5500;
   padding: 1px;
   text-align: left;
   white-space: normal;
@@ -23,6 +23,17 @@
   -moz-transition: all .15s ease-in;
   -ms-transition: all .15s ease-in;
   transition: all .15s ease-in;
+}
+.tourguide .arrow {
+  border-width: 11px;
+}
+.tourguide .arrow, .tourguide .arrow:after {
+  position: absolute;
+  display: block;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
 }
 .tourguide.left {
   margin-left: -10px;
@@ -44,16 +55,35 @@
   border-left-color: rgba(0, 0, 0, 0.2);
   border-right-width: 0;
 }
-.tourguide .arrow {
-  border-width: 11px;
+.tourguide.top .arrow {
+  bottom: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-color: #999;
+  border-top-color: rgba(0, 0, 0, .25);
+  border-bottom-width: 0;
 }
-.tourguide .arrow, .tourguide .arrow:after {
-  position: absolute;
-  display: block;
-  width: 0;
-  height: 0;
-  border-color: transparent;
-  border-style: solid;
+.tourguide.top .arrow:after {
+  bottom: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-color: #fff;
+  border-bottom-width: 0;
+}
+.tourguide.bottom .arrow {
+  top: -11px;
+  left: 50%;
+  margin-left: -11px;
+  border-top-width: 0;
+  border-bottom-color: #999;
+  border-bottom-color: rgba(0, 0, 0, .25);
+}
+.tourguide.bottom .arrow:after {
+  top: 1px;
+  margin-left: -10px;
+  content: " ";
+  border-top-width: 0;
+  border-bottom-color: #fff;
 }
 .tourguide.right .arrow:after {
   bottom: -10px;
@@ -91,11 +121,11 @@
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 6040;
+  z-index: 5040;
   background-color: #000;
   opacity: 0.3;
 }
 
 .tourguide-above-overlay {
-  z-index: 6041 !important;
+  z-index: 5041 !important;
 }

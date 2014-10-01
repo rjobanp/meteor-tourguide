@@ -12,7 +12,8 @@
   //   element: '.blah',
   //   overlay: false,
   //   aboveOverlay: '.bar',
-  //   position: 'left'
+  //   position: 'left',
+  //   zIndex: 135
   // }
 //////
 
@@ -109,22 +110,40 @@ TourGuide.prototype.positionPopover = function(step) {
     var tourNode = this.tourNode;
     var arrow = this.tourNode.find('.arrow');
 
-    if ( step.position === 'left' ) {
-      tourNode.removeClass('right').addClass('left');
+    if ( step.position === 'top' ) {
+      tourNode.removeClass('right left bottom').addClass('top');
+    } else if ( step.position === 'bottom' ) {
+      tourNode.removeClass('right left top').addClass('bottom');
+    } else if ( step.position === 'left' ) {
+      tourNode.removeClass('right top bottom').addClass('left');
     } else {
-      tourNode.removeClass('left').addClass('right');
+      tourNode.removeClass('left top bottom').addClass('right');
     }
 
     var elementOffset = element.offset();
 
     var offset = { top: 0, left: 0 };
     if (elementOffset) {
-      offset.top = elementOffset.top + (element.height() - tourNode.height()) / 2;
-      if  ( step.position === 'left' ) {
+      if ( step.position === 'top' ) {
+        offset.top = elementOffset.top - tourNode.height();
+        offset.left = elementOffset.left + (element.width() - tourNode.width())/2;
+      } else if ( step.position === 'bottom' ) {
+        offset.top = elementOffset.top + element.height();
+        offset.left = elementOffset.left + (element.width() - tourNode.width())/2;
+      } else if ( step.position === 'left' ) {
+        offset.top = elementOffset.top + (element.height() - tourNode.height()) / 2;
         offset.left = elementOffset.left - tourNode.width() - 10;
       } else {
+        offset.top = elementOffset.top + (element.height() - tourNode.height()) / 2;
         offset.left = elementOffset.left + element.width() + 10;
       }
+    }
+
+    // If a z-index was set
+    if ( step.zIndex ) {
+      tourNode.css('z-index', step.zIndex);
+    } else {
+      tourNode.css('z-index', '');
     }
 
     // If bottom is cutoff
@@ -135,6 +154,6 @@ TourGuide.prototype.positionPopover = function(step) {
     }
 
     tourNode.show().offset(offset);
-    arrowTop ? arrow.offset({top: arrowTop}) : arrow.css({'top': '50%'});
+    //arrowTop ? arrow.offset({top: arrowTop}) : arrow.css({'top': '50%'});
   }.bind(this));
 }
