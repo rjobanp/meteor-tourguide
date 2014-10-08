@@ -1,6 +1,6 @@
 Package.describe({
   summary: "Tour guide class built around meteor templates and reactivity.",
-  version: "0.0.4",
+  version: "0.0.5",
   git: "https://github.com/rosh93/meteor-tourguide"
 });
 

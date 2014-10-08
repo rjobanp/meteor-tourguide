@@ -131,7 +131,6 @@ TourGuide.prototype.positionPopover = function(step) {
     var offset = { top: 0, left: 0 };
     if (elementOffset) {
       if ( step.position === 'top' ) {
-        console.log(elementOffset.top, tourNode.height());
         offset.top = elementOffset.top - tourNode.height();
         offset.left = elementOffset.left + (element.width() - tourNode.width())/2;
       } else if ( step.position === 'bottom' ) {
