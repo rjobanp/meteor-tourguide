@@ -23,6 +23,7 @@ TourGuide = function(options) {
   this.name = options.name;
   this.steps = options.steps;
   this.defaultTemplate = options.defaultTemplate;
+  this.disableNoScroll = options.disableNoScroll;
   this.onEnd = options.onEnd;
   this.paused = false;
   this.ended = false;
@@ -77,6 +78,7 @@ TourGuide.prototype.end = function() {
 TourGuide.prototype.removeStep = function() {
   this.tourOverlay.hide();
   $('.tourguide-above-overlay').removeClass('tourguide-above-overlay');
+  $('html').removeClass('tourguide-no-scroll');
   this.tourNode.hide();
   if ( this.stepRange )
     Blaze.remove(this.stepRange);
@@ -93,6 +95,10 @@ TourGuide.prototype.showStep = function(stepIndex) {
 
   // Add overlay if needed
   step.overlay && this.addOverlay(step);
+
+  if ( !this.disableNoScroll ) {
+    $('html').addClass('tourguide-no-scroll');
+  }
 }
 
 TourGuide.prototype.addOverlay = function(step) {
@@ -125,6 +131,7 @@ TourGuide.prototype.positionPopover = function(step) {
     var offset = { top: 0, left: 0 };
     if (elementOffset) {
       if ( step.position === 'top' ) {
+        console.log(elementOffset.top, tourNode.height());
         offset.top = elementOffset.top - tourNode.height();
         offset.left = elementOffset.left + (element.width() - tourNode.width())/2;
       } else if ( step.position === 'bottom' ) {
@@ -146,14 +153,6 @@ TourGuide.prototype.positionPopover = function(step) {
       tourNode.css('z-index', '');
     }
 
-    // If bottom is cutoff
-    var windowHeight = $(window).height();
-    if (offset.top + tourNode.height() > windowHeight) {
-      offset.top = windowHeight - tourNode.height();
-      var arrowTop = elementOffset ? elementOffset.top + element.height() / 2 - 5.5 : 0;
-    }
-
     tourNode.show().offset(offset);
-    //arrowTop ? arrow.offset({top: arrowTop}) : arrow.css({'top': '50%'});
   }.bind(this));
 }
